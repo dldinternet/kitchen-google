@@ -11,4 +11,10 @@ RuboCop::RakeTask.new(:style) do |task|
   task.options << "--display-cop-names"
 end
 
+require 'rubygems/package_task'
+Gem::PackageTask.new(Gem::Specification.load('kitchen-google.gemspec')) do |pkg|
+  pkg.need_tar = true
+  pkg.need_zip = false
+end
+
 task default: [:spec, :style]
